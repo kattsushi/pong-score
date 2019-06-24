@@ -8,6 +8,9 @@
   <nb-select [(selected)]="currentTheme" (selectedChange)="toggleTheme()" status="primary">
     <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
   </nb-select>
+  <nb-select [(selected)]="currentLang" (selectedChange)="toggleLang()" status="primary">
+    <nb-option *ngFor="let lang of languages" [value]="lang.value"> {{ lang.name }}</nb-option>
+  </nb-select>
 </div>
 
 <div class="header-container">
@@ -20,8 +23,9 @@
     <nb-action class="control-item" icon="bell-outline"></nb-action>
     <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
       <nb-user [nbContextMenu]="userMenu"
+               [nbContextMenuTag]="'my-context-menu'"
                [onlyPicture]="userPictureOnly"
-               [name]="user?.name"
+               [name]="user?.displayName || user.email"
                [picture]="user?.picture">
       </nb-user>
     </nb-action>

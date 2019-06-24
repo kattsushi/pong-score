@@ -1,10 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
+import {
+  NbMediaBreakpointsService,
+  NbMenuService,
+  NbSidebarService,
+  NbThemeService,
+} from '@nebular/theme';
 
 import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, filter } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { AuthService } from '../../../auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'ngx-header',
@@ -27,23 +34,39 @@ export class HeaderComponent implements OnInit, OnDestroy {
       name: 'Light',
     },
   ];
-
+  languages = [{
+    value: 'en',
+    name: 'English',
+  }, {
+    value: 'es',
+    name: 'Spanish',
+  }];
   currentTheme = 'default';
+  currentLang = 'en';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  userMenu = [ { title: 'Profile' }, { title: 'Log out', data: { id: 'logout' } } ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private themeService: NbThemeService,
-              private userService: UserData,
+              private translate: TranslateService,
               private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
-    this.userService.getUsers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => this.user = users.nick);
+    this.menuService.onItemClick()
+      .pipe(filter(({ tag }) => tag === 'my-context-menu'))
+      .subscribe(({item}) => {
+        if (item.data.id === 'logout') {
+          this.authService.signOut();
+        }
+    });
+    // this.userService.getUsers()
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe((users: any) => this.user = users.nick);
+    this.user = this.authService.getCurrentUser();
 
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
@@ -63,6 +86,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.themeService.changeTheme(this.currentTheme);
   }
 
+  toggleLang() {
+    this.translate.setDefaultLang(this.currentLang);
+  }
+
   toggleSidebar(): boolean {
     this.sidebarService.toggle(true, 'menu-sidebar');
     this.layoutService.changeLayoutSize();
@@ -71,7 +98,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   navigateHome() {
-    this.menuService.navigateHome();
+    // this.menuService.navigateHome();
     return false;
   }
 }

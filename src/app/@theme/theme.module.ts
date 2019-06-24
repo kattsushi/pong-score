@@ -21,6 +21,9 @@ import {
   HeaderComponent,
   SearchInputComponent,
   TinyMCEComponent,
+  NgxLoginComponent,
+  NgxAuthBlockComponent,
+  NgxRequestPasswordComponent,
 } from './components';
 import {
   CapitalizePipe,
@@ -38,6 +41,16 @@ import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+const BASE_MODULES = [
+  CommonModule,
+  FormsModule,
+  ReactiveFormsModule,
+  RouterModule,
+  TranslateModule,
+];
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -62,6 +75,11 @@ const COMPONENTS = [
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
 ];
+const CUSTOM_AUTH_COMPONENTS = [
+  NgxAuthBlockComponent,
+  NgxLoginComponent,
+  NgxRequestPasswordComponent,
+];
 const PIPES = [
   CapitalizePipe,
   PluralPipe,
@@ -71,9 +89,9 @@ const PIPES = [
 ];
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES],
-  exports: [CommonModule, ...PIPES, ...COMPONENTS],
-  declarations: [...COMPONENTS, ...PIPES],
+  imports: [CommonModule, ...BASE_MODULES, ...NB_MODULES],
+  exports: [CommonModule, ...BASE_MODULES, ...PIPES, ...COMPONENTS, ...CUSTOM_AUTH_COMPONENTS],
+  declarations: [...COMPONENTS, ...CUSTOM_AUTH_COMPONENTS, ...PIPES],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders {

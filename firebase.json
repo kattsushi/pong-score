@@ -28,6 +28,6 @@
     ]
   },
   "storage": {
-    "rules": "y"
+    "rules": "firestore.rules"
   }
 }

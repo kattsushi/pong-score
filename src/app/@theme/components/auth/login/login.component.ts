@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'ngx-login',
   template: `
     <ngx-auth-block>
+      <ngx-switch-lang></ngx-switch-lang>
       <h2 class="title"><strong>Pong-Score</strong> {{'login.title' | translate }}</h2>
       <small class="form-text sub-title">{{'login.subtitle' | translate}}</small>
       <form (ngSubmit)="login()" #form="ngForm" autocomplete="off">

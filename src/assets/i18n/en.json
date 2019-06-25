@@ -1,5 +1,7 @@
 {
   "login.title": "Login",
   "login.subtitle": "Welcome, Access the control panel with your e-mail and password",
-  "login.form.email": "Email address"
+  "login.form": {
+    "email": "Email address"
+  }
 }

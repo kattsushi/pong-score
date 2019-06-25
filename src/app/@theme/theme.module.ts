@@ -44,6 +44,7 @@ import { DARK_THEME } from './styles/theme.dark';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { SwitchLangComponent } from './components/switch-lang/switch-lang.component';
 const BASE_MODULES = [
   CommonModule,
   FormsModule,
@@ -74,6 +75,7 @@ const COMPONENTS = [
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
+  SwitchLangComponent,
 ];
 const CUSTOM_AUTH_COMPONENTS = [
   NgxAuthBlockComponent,

@@ -1,18 +1,25 @@
 <div class="header-container">
   <div class="logo-container">
     <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
-      <nb-icon icon="menu-2-outline"></nb-icon>
+      <img src="assets/images/logo-2-{{currentTheme}}.png" width="50" alt="">
+      <!-- <nb-icon icon="menu-2-outline"></nb-icon> -->
     </a>
-    <a class="logo" href="#" (click)="navigateHome()">Pong-<span>Score</span></a>
+    <a class="logo" href="#" (click)="navigateHome()">
+      <img src="assets/images/logo-3-{{currentTheme}}.png" width="242" alt="">
+    </a>
   </div>
-  <nb-select [(selected)]="currentTheme" (selectedChange)="toggleTheme()" status="primary">
-    <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
-  </nb-select>
-  <ngx-switch-lang></ngx-switch-lang>
 </div>
 
 <div class="header-container">
   <nb-actions size="small">
+    <nb-action>
+      <nb-select [(selected)]="currentTheme" (selectedChange)="toggleTheme()" status="primary">
+        <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
+      </nb-select>
+    </nb-action>
+    <nb-action>
+      <ngx-switch-lang></ngx-switch-lang>
+    </nb-action>
 
     <nb-action class="control-item">
       <nb-search type="rotate-layout"></nb-search>

@@ -2,9 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { NB_AUTH_OPTIONS } from '@nebular/auth';
-// import { getDeepFromObject } from '@nebular/auth/helpers';
 import { AuthService } from '../../../../auth.service';
-// import { AngularFireDatabase } from 'angularfire2/database';
 import { environment } from '../../../../../environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -12,8 +10,8 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'ngx-login',
   template: `
     <ngx-auth-block>
-      <ngx-switch-lang></ngx-switch-lang>
-      <h2 class="title"><strong>Pong-Score</strong> {{'login.title' | translate }}</h2>
+      <img src="assets/images/logo-1.png" class="rounded mx-auto d-block" alt="Smiley face">
+      <h2 class="title">{{'login.title' | translate }}</h2>
       <small class="form-text sub-title">{{'login.subtitle' | translate}}</small>
       <form (ngSubmit)="login()" #form="ngForm" autocomplete="off">
         <div *ngIf="showMessages.error && errors && errors.length > 0 && !submitted"
@@ -82,9 +80,7 @@ export class NgxLoginComponent {
   constructor(@Inject(NB_AUTH_OPTIONS) protected options = {},
               protected router: Router,
               protected auth: AuthService,
-              translate: TranslateService,
-              /*private db: AngularFireDatabase,*/
-  ) {1
+  ) {
     this.showMessages = this.getConfigValue('forms.login.showMessages');
   }
 

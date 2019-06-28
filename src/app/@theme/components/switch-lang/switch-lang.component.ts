@@ -26,9 +26,11 @@ export class SwitchLangComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.translate.setDefaultLang(this.currentLang);
   }
 
   toggleLang() {
+    console.log('this.currentLang', this.currentLang);
     this.translate.setDefaultLang(this.currentLang);
   }
 

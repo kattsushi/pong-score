@@ -11,6 +11,7 @@ import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil, filter } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { AuthService } from '../../../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -25,24 +26,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   themes = [
     {
-      value: 'default',
+      value: 'dark',
       name: 'Dark',
     },
     {
-      value: 'light',
+      value: 'default',
       name: 'Light',
     },
   ];
-  currentTheme = 'default';
+  currentTheme = 'dark';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out', data: { id: 'logout' } } ];
+  userMenu = [ { title: 'Profile', data: {id: 'profile' } }, { title: 'Log out', data: { id: 'logout' } } ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private themeService: NbThemeService,
               private layoutService: LayoutService,
               private breakpointService: NbMediaBreakpointsService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -51,6 +53,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe(({item}) => {
         if (item.data.id === 'logout') {
           this.authService.signOut();
+        } else if (item.data.id === 'profile') {
+          this.router.navigate(['pages', 'profile']);
         }
     });
     this.user = this.authService.getCurrentUser();

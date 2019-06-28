@@ -3,5 +3,21 @@
   "login.subtitle": "Bienvenido/a. Accede al panel de control con tu e-mail y contraseña",
   "login.form": {
     "email": "Email address"
+  },
+  "profile": {
+    "general-information": "Informacion General",
+    "change-profile-picture": "Cambia la imagen de perfil",
+    "first-name": "Nombre",
+    "last-name": "Apellido",
+    "occupation": "Ocupacion",
+    "departament": "Departament",
+    "contact-information": "Info de Contacto",
+    "email": "Email",
+    "location": "Locacion",
+    "phone": "Telefono",
+    "room": "Sala",
+    "change-password": "Cambia de Contraseña",
+    "password": "Contraseña",
+    "confirm-password":"Confirmar Contraseña"
   }
 }

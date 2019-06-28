@@ -35,16 +35,8 @@ const routes: Routes = [
         component: NbRegisterComponent,
       },
       {
-        path: 'logout',
-        component: NbLogoutComponent,
-      },
-      {
         path: 'request-password',
         component: NgxRequestPasswordComponent,
-      },
-      {
-        path: 'reset-password',
-        component: NbResetPasswordComponent,
       },
     ],
   },

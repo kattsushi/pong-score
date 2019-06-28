@@ -3,5 +3,20 @@
   "login.subtitle": "Welcome, Access the control panel with your e-mail and password",
   "login.form": {
     "email": "Email address"
+  },
+  "profile": {
+    "general-information": "General Information",
+    "change-profile-picture": "Change Profile Picture",
+    "first-name": "First Name",
+    "last-name": "Last Name",
+    "Occupation": "Occupation",
+    "contact-information": "Contact Information",
+    "email": "Email",
+    "Location": "Location",
+    "phone": "Phone",
+    "room": "Room",
+    "change-password": "Change Password",
+    "password": "Password",
+    "confirm-password":"Confirm Password"
   }
 }
